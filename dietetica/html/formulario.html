@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sistema de facturacion Dietetica</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="portada-1">
+    <section class="formulario">
+        <form action="" method="post">
+            <h2>Iniciar sesion</h2>
+            <input type="text" class="controlador" name="usuario" placeholder="Usuario">
+            <input type="password" class="controlador" name="clave" placeholder="Contraseña">
+            <div class="alerta"><?php echo (isset($alerta) ? $alerta : '') ?></div>
+            <input type="submit" class="boton" value="Enviar">
+        </form>
+    </section>
+</body>
+</html>
