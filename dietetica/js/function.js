@@ -34,4 +34,39 @@ $(document).ready(function(){
         $(".delPhoto").addClass('notBlock');
         $("#img").remove();
     });
+
+    // Modal para agregar el producto
+    $('.add-product').click(function(event){
+        event.preventDefault();
+        var producto = $(this).attr('product') //permite acceder a los atributos del elemento producto
+        var action = 'infoProducto';
+
+        $.ajax({
+            url: 'ajax.php',
+            type:'POST',
+            async: true,
+            data: {action:action,producto:producto},
+        
+            success: function(response){
+                console.log(response);
+
+                if(response != 'error'){ //significa que si tiene los datos en formato json
+                    var info = JSON.parse(response);
+                    $('#producto_id').val(info.codproducto);
+                    $('.nameProduct').html(info.descripcion);
+                }
+            },
+
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+
+        $('.modal').fadeIn();
+    });
 });
+
+function coloseModal(){
+    $('.modal').fadeOut(); //desaparece el modal
+}
