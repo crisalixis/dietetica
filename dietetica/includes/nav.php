@@ -31,7 +31,7 @@
                         ?>
                             <li><a href="registro-producto.php"><i class="fas fa-plus"></i> Nuevo Producto</a></li>
                         <?php } ?>
-                            <li><a href="#"><i class="fas fa-cubes"></i> Lista de Productos</a></li>
+                            <li><a href="lista-productos.php"><i class="fas fa-cubes"></i> Lista de Productos</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><i class="fas fa-file-alt"></i> Factura ▾ </a>
