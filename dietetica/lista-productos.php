@@ -61,11 +61,11 @@
                             $foto = 'img/'.$data['foto'];
                         }
                     ?>
-                        <tr>
+                        <tr class="row<?php echo $data['codproducto'] ?>" >
                             <td><?php echo $data['codproducto'] ?></td>
                             <td><?php echo $data['descripcion'] ?></td>
-                            <td><?php echo $data['precio'] ?></td>
-                            <td><?php echo $data['existencia'] ?></td>
+                            <td class="precioC"><?php echo $data['precio'] ?></td>
+                            <td class="existenciaC"><?php echo $data['existencia'] ?></td>
                             <td><?php echo $data['proveedor'] ?></td>
                             <td><img src="<?php echo $foto ?>" alt="<?php echo $data['descripcion'] ?>" style=" height: 80px; width: 80px; margin: auto"></td>
                             <?php if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){?>
