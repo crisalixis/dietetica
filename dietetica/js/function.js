@@ -33,6 +33,10 @@ $(document).ready(function(){
         $('#foto').val('');
         $(".delPhoto").addClass('notBlock');
         $("#img").remove();
+
+        if($("#foto-actual") && $("#foto-remove")){ //si existen estos elementos va a cambiar el texto del input   
+            $("#foto-remove").val('img-producto.png');  //al elemento se le va a cambiar el valor
+        }
     });
 
     // Modal para agregar el producto
@@ -52,8 +56,6 @@ $(document).ready(function(){
 
                 if(response != 'error'){ //significa que si tiene los datos en formato json los convierte en un array
                     var info = JSON.parse(response);
-                    $('#producto_id').val(info.codproducto);
-                    $('.nameProduct').html(info.descripcion);
                     $('.bodyModal').html('<form action="" method="post" name="form-add-product" class="formulario" id="form-add-product" onsubmit="event.preventDefault(); sendDataProduct();">'+
                         '<h1><i class="fas fa-cubes"></i>Agregar producto</h1>'+
                         '<h2 class="nameProduct">'+info.descripcion+'</h2>'+
