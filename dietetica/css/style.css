@@ -639,6 +639,7 @@ table td{
     font-size: 15px;
     border-radius: 5px;
     text-decoration: none;
+    margin-left: 10px;
     display: inline-flex;
 }
 
@@ -647,6 +648,55 @@ table td{
     text-align: center;
     display: flex;
     justify-content: center;
+}
+
+/* Modal de agregar */
+.formulario1 {
+    width: 400px;
+    height: 350px;
+    background-color: #e8e8cc;
+    margin: auto;
+    margin-top: 130px;
+    box-shadow: 7px 13px 37px #443019;
+    padding: 20px 30px;
+    border-top: 4px solid #ab7e01;
+}
+
+.formulario1 h2{
+    margin: 0;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid;
+    color: rgb(77, 54, 24);
+}
+
+/* Modal de eliminar */
+.formulario2 {
+    align-items: center;
+    width: 400px;
+    height: 250px;
+    background-color: #e8e8cc;
+    margin: auto;
+    margin-top: 200px;
+    box-shadow: 7px 13px 37px #443019;
+    padding: 20px 30px;
+    border-top: 4px solid #ab7e01;
+}
+
+.formulario2 .p{
+    font-size: 18px;
+    margin: 0;
+    text-align: center;
+    color: rgb(116, 82, 37);
+}
+
+.formulario2 .parrafo {
+    font-size: 18px;
+    margin: 0;
+    margin-top: 5px;
+    text-align: center;
+    color: rgb(100, 59, 2);
 }
 /*
 header {
