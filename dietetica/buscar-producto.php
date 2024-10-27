@@ -15,7 +15,19 @@
 <body>
     <?php include "includes/header.php" ?>
 	<section id="container">
-		
+		<?php
+            $busqueda = '';
+            $search_proveedor= '';
+            if(empty($_REQUEST['busqueda']) && empty($_REQUEST['proveedor'])){
+                header("location: lista-productos.php");
+            }
+            if(!empty($_REQUEST['busqueda'])){
+                $busqueda = strtolower($_REQUEST['busqueda']); //convierte a minuscula
+            }
+            if(!empty($_REQUEST['proveedor'])){
+                $search_proveedor = $_REQUEST['proveedor'];
+            }
+        ?>
         <h1><i class="fas fa-cubes"></i> Lista de Productos</h1>
         <a href="registro-producto.php" class="btn-new"><i class="fas fa-plus"></i> Crear producto</a>
         <form action="buscar-producto.php" method="get" class="form-search">
@@ -30,6 +42,12 @@
                 <th>Existencia</th>
                 <th>
                 <?php
+                    $pro = 0;
+                    
+                    if(!empty($_REQUEST['proveedor'])){
+                        $pro = $_REQUEST['proveedor'];
+                    }
+
                     $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, proveedor FROM proveedor WHERE estado = 1 ORDER BY proveedor ASC");
                     $resul_proveedor = mysqli_num_rows($query_proveedor);
                 ?>
@@ -37,10 +55,15 @@
                 <?php
                     if($resul_proveedor > 0){
                         while ($proveedor = mysqli_fetch_array($query_proveedor)){
-                            //convierte el query en los option
+                            if($pro == $proveedor['codproveedor']){
                 ?>
-                <option value="<?php echo $proveedor['codproveedor']?>"><?php echo $proveedor['proveedor']?></option>
+                    <option value="<?php echo $proveedor['codproveedor']?>" selected><?php echo $proveedor['proveedor']?></option>
                 <?php
+                            }else{
+                ?>
+                    <option value="<?php echo $proveedor['codproveedor']?>"><?php echo $proveedor['proveedor']?></option>
+                <?php
+                            }
                         }
                     }
                 ?>

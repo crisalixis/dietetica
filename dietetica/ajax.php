@@ -2,6 +2,7 @@
     include 'config/db.php';
     session_start();
     //print_r($_POST); exit;
+    // exit;
     if(!empty($_POST)){
         //Extraer datos del producto
         if($_POST['action'] == 'infoProducto'){
@@ -18,7 +19,7 @@
             echo 'error';
             exit;
         }
-
+        //Agregar productos y procedimiento
         if($_POST['action'] == 'addProduct'){
             if(!empty($_POST['cantidad']) || !empty($_POST['precio']) || !empty($_POST['producto_id'])){
                 $cantidad = $_POST['cantidad'];
@@ -47,6 +48,29 @@
             }
             exit;
         }
+        //Eliminar datos del producto
+        if($_POST['action'] == 'delProduct'){
+            if(empty($_POST['producto_id']) || !is_numeric($_POST['producto_id'])){
+                echo 'error';
+                exit;
+            }else{
+                $idproducto = $_POST['producto_id'];
+
+                $query_delete = mysqli_query($conexion, "UPDATE producto SET estado = 0 WHERE codproducto = $idproducto");
+        
+                if($query_delete){
+                    echo 'ok';
+                    exit;
+                }else{
+                    echo 'Error al eliminar';
+                    exit;
+                }
+            }
+            echo 'error';
+        }
+        exit;
     }
+
+    //print_r($_POST);
     exit;
 ?>
