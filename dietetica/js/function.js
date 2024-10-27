@@ -56,7 +56,7 @@ $(document).ready(function(){
 
                 if(response != 'error'){ //significa que si tiene los datos en formato json los convierte en un array
                     var info = JSON.parse(response);
-                    $('.bodyModal').html('<form action="" method="post" name="form-add-product" class="formulario" id="form-add-product" onsubmit="event.preventDefault(); sendDataProduct();">'+
+                    $('.bodyModal').html('<form action="" method="post" name="form-add-product" class="formulario1" id="form-add-product" onsubmit="event.preventDefault(); sendDataProduct();">'+
                         '<h1><i class="fas fa-cubes"></i>Agregar producto</h1>'+
                         '<h2 class="nameProduct">'+info.descripcion+'</h2>'+
                         '<input type="number" name="cantidad" id="txtcantidad" placeholder="Cantidad del producto">'+
@@ -78,8 +78,63 @@ $(document).ready(function(){
 
         $('.modal').fadeIn();
     });
+
+    // Modal para eliminar el producto
+    $('.del-product').click(function(event){
+        event.preventDefault();
+        var producto = $(this).attr('product') //permite acceder a los atributos del elemento producto
+        var action = 'infoProducto';
+
+        $.ajax({
+            url: 'ajax.php',
+            type:'POST',
+            async: true,
+            data: {action:action,producto:producto},
+        
+            success: function(response){
+                console.log(response);
+
+                if(response != 'error'){ //significa que si tiene los datos en formato json los convierte en un array
+                    var info = JSON.parse(response);
+                    $('.bodyModal').html('<form action="" method="post" name="form-del-product" class="formulario2" id="form-del-product" onsubmit="event.preventDefault(); delProduct();">'+
+                        '<h1><i class="fas fa-cubes"></i>Eliminar producto</h1>'+
+                        '<p class="p">¿Esta seguro de eliminar el siguiente registro?</p>'+
+                        '<p class="nameProduct parrafo">'+info.descripcion+'</p>'+
+                        '<input type="hidden" name="producto_id" id="producto_id" value="'+info.codproducto+'" required>'+
+                        '<input type="hidden" name="action" value="delProduct" required>'+
+                        '<div class="alerta alertaAddProduct"></div>'+
+                        
+                        '<a href="#" class="btn-new-2" onclick="coloseModal();"><i class="fas fa-ban"></i> Cancelar</a>'+
+                        '<button type="submit" class="btn-ok"><i class="fas fa-trash"></i> Aceptar</button>'+
+                        '</form>')
+                }
+            },
+
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+
+        $('.modal').fadeIn();
+    });
+
+    //Busqueda
+    $('#search-proveedor').change(function(e){
+        e.preventDefault(); //no va a recargar la página
+
+        var sistema = getUrl(); //de vuelve la funcion
+        location.href = sistema='buscar-producto.php?proveedor='+$(this).val(); //redirecciona a la url y se le esta concatenando el archivo
+    });
 });
 
+function getUrl(){
+    var loc = window.location;
+    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length)); //devuelve la direccion donde se encuentra el directorio
+}
+
+//Agregar cantidad del producto y promedio de precio
 function sendDataProduct(){
     $('.alertaAddProduct').html('');
 
@@ -109,6 +164,34 @@ function sendDataProduct(){
     });    
 }
 
+//Eliminar producto
+function delProduct(){
+    var pr = $('#producto_id').val();
+    $('.alertaAddProduct').html('');
+
+    $.ajax({
+        url: 'ajax.php',
+        type:'POST',
+        async: true,
+        data: $('#form-del-product').serialize(),
+        
+        
+        success: function(response){
+            if(response == 'error'){
+                $('.alertaAddProduct').html('<p style="color:Red">Error al eliminar el producto.</p>')
+            }else{
+                $('.row'+pr).remove(); //se concatena el dato
+                $('#form-del-product .btn-ok').remove();
+                $('.alertaAddProduct').html('<p>Producto eliminado correctamente.</p>');
+            }
+            console.log(response);
+        },
+
+        error: function(error){
+            console.log(error);
+        }
+    });    
+}
 function coloseModal(){
     $('.alertaAddProduct').html(''); //se vacia la alerta
     $('#txtcantidad').val('');//se vacian el input cantidad
