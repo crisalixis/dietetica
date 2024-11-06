@@ -23,15 +23,20 @@
             }
             if(!empty($_REQUEST['busqueda'])){
                 $busqueda = strtolower($_REQUEST['busqueda']); //convierte a minuscula
+                $where = "(p.codproducto LIKE '%$busqueda%' OR p.descripcion LIKE '%$busqueda%') AND p.estado = 1";
+                $buscar = 'busqueda='.$busqueda;
             }
             if(!empty($_REQUEST['proveedor'])){
                 $search_proveedor = $_REQUEST['proveedor'];
+                $where = "p.proveedor LIKE $search_proveedor AND p.estado = 1";
+                $buscar = 'proveedor='.$search_proveedor;
+                
             }
         ?>
         <h1><i class="fas fa-cubes"></i> Lista de Productos</h1>
         <a href="registro-producto.php" class="btn-new"><i class="fas fa-plus"></i> Crear producto</a>
         <form action="buscar-producto.php" method="get" class="form-search">
-            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
+            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar" value="<?php echo $busqueda?>">
             <button type="submit"class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <table>
@@ -52,6 +57,7 @@
                     $resul_proveedor = mysqli_num_rows($query_proveedor);
                 ?>
                 <select name="proveedor" id="search-proveedor">
+                    <option value="" selected>PROVEEDOR</option>
                 <?php
                     if($resul_proveedor > 0){
                         while ($proveedor = mysqli_fetch_array($query_proveedor)){
@@ -74,11 +80,12 @@
             </tr>
             <?php 
                 //Paginador
-                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto WHERE estado = 1");
+                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto as p WHERE  $where");
+
                 $result_register = mysqli_fetch_array($sql_register);
                 $total_registro = $result_register['total_registro'];
 
-                $por_pagina = 5;
+                $por_pagina = 6;
                 
                 if(empty($_GET['pagina'])){
                     $pagina = 1;
@@ -90,7 +97,7 @@
                 $total_paginas = ceil($total_registro / $por_pagina);
 
 
-                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.proveedor, p.foto FROM producto p INNER JOIN proveedor pr ON p.proveedor = pr.codproveedor WHERE p.estado = 1 ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.proveedor, p.foto FROM producto p INNER JOIN proveedor pr ON p.proveedor = pr.codproveedor WHERE $where ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
                 $result = mysqli_num_rows($query);
 
                 if($result > 0){
@@ -121,14 +128,17 @@
                 }
                 ?>
         </table>
+        <?php
+            if($total_paginas != 0){
+        ?>
         <div class="paginador">
             <ul>
                 <?php
                     if($pagina != 1){
 
                 ?>
-                <li><a href="?pagina=<?php echo 1 ?>"><i class="fas fa-backward-step"></i></a></li>
-                <li><a href="?pagina=<?php echo $pagina - 1 ?>"><i class="fas fa-angles-left"></i></a></li>
+                <li><a href="?pagina=<?php echo 1 ?>&<?php echo $buscar ?>"><i class="fas fa-backward-step"></i></a></li>
+                <li><a href="?pagina=<?php echo $pagina - 1 ?>&<?php echo $buscar ?>"><i class="fas fa-angles-left"></i></a></li>
                 <?php                        
                 }   
 
@@ -136,7 +146,7 @@
                         if($i == $pagina){
                             echo '<li class="pageSelected">'.$i.'</li>';
                         }else{
-                            echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
+                            echo '<li><a href="?pagina='.$i.'&'.$buscar.'">'.$i.'</a></li>';
                         }
                     }
                 
@@ -144,11 +154,12 @@
 
                 ?>
                 
-                <li><a href="?pagina=<?php echo $pagina + 1 ?>"><i class="fas fa-angles-right"></i></a></li>
-                <li><a href="?pagina=<?php echo $total_paginas ?>"><i class="fas fa-forward-step"></i></a></li>
+                <li><a href="?pagina=<?php echo $pagina + 1 ?>&<?php echo $buscar ?>"><i class="fas fa-angles-right"></i></a></li>
+                <li><a href="?pagina=<?php echo $total_paginas ?>&<?php echo $buscar ?>"><i class="fas fa-forward-step"></i></a></li>
                 <?php } ?>
             </ul>
         </div>
+        <?php } ?>
 	</section>
 	<?php include "includes/footer.php" ?>
 </body>
