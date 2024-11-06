@@ -192,6 +192,8 @@ function delProduct(){
         }
     });    
 }
+
+//Cerrar modal
 function coloseModal(){
     $('.alertaAddProduct').html(''); //se vacia la alerta
     $('#txtcantidad').val('');//se vacian el input cantidad
