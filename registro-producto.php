@@ -8,11 +8,11 @@
     if(!empty($_POST))
     {
         $alerta='';
-        if(empty($_POST['proveedor']) || empty($_POST['producto']) || empty($_POST['precio']) || $_POST['precio'] <= 0 || empty($_POST['cantidad']) || $_POST['cantidad'] <= 0){
+        if(empty($_POST['nombre']) || empty($_POST['producto']) || empty($_POST['precio']) || $_POST['precio'] <= 0 || empty($_POST['cantidad']) || $_POST['cantidad'] <= 0){
             $alerta='<p class="msg-error">Todos los campos son obligatorios.</p>';   
         }else{
 
-            $proveedor  = $_POST['proveedor'];
+            $nombre_proveedor  = $_POST['nombre'];
             $producto   = $_POST['producto'];
             $precio   = $_POST['precio'];
             $cantidad  = $_POST['cantidad'];
@@ -32,7 +32,7 @@
                 $src = $destino.$imgProducto;
             }
 
-            $query = mysqli_query($conexion, "INSERT INTO producto(proveedor, descripcion, precio, existencia, usuario_id, foto) VALUES ('$proveedor','$producto','$precio','$cantidad','$usuario_id', '$imgProducto')");
+            $query = mysqli_query($conexion, "INSERT INTO producto(nombre, descripcion, precio, existencia, usuario_id, foto) VALUES ('$nombre_proveedor','$producto','$precio','$cantidad','$usuario_id', '$imgProducto')");
 
                 if($query){
                     if($nombre_foto != ''){
@@ -68,16 +68,16 @@
                 <label for="proveedor">Nombre del proveedor</label>
                 
                 <?php
-                    $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, proveedor FROM proveedor ORDER BY proveedor ASC");
+                    $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, nombre FROM proveedor ORDER BY nombre ASC");
                     $resul_proveedor = mysqli_num_rows($query_proveedor);
                 ?>
-                <select name="proveedor" id="proveedor">
+                <select name="nombre" id="nombre">
                 <?php
                     if($resul_proveedor > 0){
-                        while ($proveedor = mysqli_fetch_array($query_proveedor)){
+                        while ($nombre_proveedor = mysqli_fetch_array($query_proveedor)){
                             //convierte el query en los option
                 ?>
-                <option value="<?php echo $proveedor['codproveedor']?>"><?php echo $proveedor['proveedor']?></option>
+                <option value="<?php echo $nombre_proveedor['codproveedor']?>"><?php echo $nombre_proveedor['nombre']?></option>
                 <?php
                         }
                     }

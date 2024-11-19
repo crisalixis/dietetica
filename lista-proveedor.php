@@ -58,7 +58,7 @@
                     ?>
                         <tr>
                             <td><?php echo $data['codproveedor'] ?></td>
-                            <td><?php echo $data['proveedor'] ?></td>
+                            <td><?php echo $data['nombre'] ?></td>
                             <td><?php echo $data['contacto'] ?></td>
                             <td><?php echo $data['telefono'] ?></td>
                             <td><?php echo $data['direccion'] ?></td>

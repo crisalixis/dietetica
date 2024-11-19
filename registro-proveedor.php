@@ -8,17 +8,17 @@
     if(!empty($_POST))
     {
         $alerta='';
-        if(empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion'])){
+        if(empty($_POST['nombre']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion'])){
             $alerta='<p class="msg-error">Todos los campos son obligatorios.</p>';   
         }else{
 
-            $proveedor  = $_POST['proveedor'];
+            $nombre_proveedor  = $_POST['nombre'];
             $contacto   = $_POST['contacto'];
             $telefono   = $_POST['telefono'];
             $direccion  = $_POST['direccion'];
             $usuario_id = $_SESSION['idUser'];
 
-            $query = mysqli_query($conexion, "INSERT INTO proveedor(proveedor, contacto, telefono, direccion, usuario_id ) VALUES ('$proveedor','$contacto','$telefono','$direccion','$usuario_id')");
+            $query = mysqli_query($conexion, "INSERT INTO proveedor(nombre, contacto, telefono, direccion, usuario_id ) VALUES ('$nombre_proveedor','$contacto','$telefono','$direccion','$usuario_id')");
 
                 if($query){
                     $alerta='<p class="msg-save">Los datos fueron almacenados correctamente.</p>';  
@@ -48,8 +48,8 @@
             <div class="alerta"><?php echo isset($alerta) ? $alerta :'' ?></div>
 
             <form action="" method="post" class="form">
-                <label for="proveedor">Nombre del proveedor</label>
-                <input type="text" name="proveedor" id="proveedor" placeholder="Nombre del proveedor">
+                <label for="nombre">Nombre del proveedor</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre del proveedor">
                 <label for="contacto">Contacto</label>
                 <input type="text" name="contacto" id="contacto" placeholder="Nombre completo del contacto">
                 <label for="Telefono">Telefono</label>
