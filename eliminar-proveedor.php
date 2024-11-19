@@ -31,7 +31,7 @@
 
         if($result > 0){
             while($data = mysqli_fetch_array($query)){
-                $proveedor  = $data['proveedor'];
+                $nombre_proveedor  = $data['nombre'];
             }
         }else{
                 header("location: lista-usuario.php");
@@ -51,7 +51,7 @@
 	<section id="container">
 		<div class="data-delete">
             <h2>¿Esta seguro de eliminar el siguiente registro?</h2>
-            <p>Nombre del proveedor: <span><?php echo $proveedor ?></span></p>
+            <p>Nombre del proveedor: <span><?php echo $nombre_proveedor ?></span></p>
             <form class="form" action="" method="post">
                 <input type="hidden" name="idproveedor" value="<?php echo $idproveedor ?>">
                 <a href="lista-proveedor.php" class="btn-cancel"><i class="fas fa-ban"></i> Cancelar</a>

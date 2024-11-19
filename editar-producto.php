@@ -8,12 +8,12 @@
     if(!empty($_POST))
     {
         $alerta='';
-        if(empty($_POST['proveedor']) || empty($_POST['producto']) || empty($_POST['precio']) || empty($_POST['id']) || empty($_POST['foto-actual']) || empty($_POST['foto-remove'])){
+        if(empty($_POST['nombre']) || empty($_POST['descripcion']) || empty($_POST['precio']) || empty($_POST['id']) || empty($_POST['foto-actual']) || empty($_POST['foto-remove'])){
             $alerta='<p class="msg-error">Todos los campos son obligatorios.</p>';   
         }else{
             $codproducto = $_POST['id'];
-            $proveedor  = $_POST['proveedor'];
-            $producto   = $_POST['producto'];
+            $nombre_proveedor  = $_POST['nombre'];
+            $descripcion   = $_POST['descripcion'];
             $precio   = $_POST['precio'];
             $imgProducto  = $_POST['foto-actual'];
             $imgRemove = $_POST['foto-remove'];
@@ -36,7 +36,7 @@
                 }
             }
 
-            $query_update = mysqli_query($conexion, "UPDATE producto SET descripcion = '$producto', proveedor = $proveedor, precio = $precio, foto = '$imgProducto' WHERE codproducto = $codproducto");
+            $query_update = mysqli_query($conexion, "UPDATE producto SET descripcion = '$descripcion', nombre = $nombre_proveedor, precio = $precio, foto = '$imgProducto' WHERE codproducto = $codproducto");
 
                 if($query_update){
 
@@ -65,7 +65,7 @@
                 header("location: lista-productos.php"); //si no es numero se redirecciona
             }
 
-            $query_producto = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.foto,  pr.codproveedor, pr.proveedor FROM producto p INNER JOIN proveedor pr ON p.proveedor = pr.codproveedor WHERE p.codproducto = $id_producto");
+            $query_producto = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.foto,  pr.codproveedor, pr.nombre FROM producto p INNER JOIN proveedor pr ON p.nombre = pr.codproveedor WHERE p.codproducto = $id_producto");
             $result_producto = mysqli_num_rows($query_producto);
 
             $foto = '';
@@ -108,26 +108,26 @@
                 
                 <label for="proveedor">Nombre del proveedor</label>
                 <?php
-                    $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, proveedor FROM proveedor ORDER BY proveedor ASC");
+                    $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, nombre FROM proveedor ORDER BY nombre ASC");
                     $resul_proveedor = mysqli_num_rows($query_proveedor);
                 ?>
                 <select name="proveedor" id="proveedor" class="notItemOne">
-                    <option value="<?php echo $data_producto['codproveedor']?>" selected><?php echo $data_producto['proveedor']?></option>
+                    <option value="<?php echo $data_producto['codproveedor']?>" selected><?php echo $data_producto['nombre']?></option>
                 <?php
                 
                     if($resul_proveedor > 0){
                         while ($proveedor = mysqli_fetch_array($query_proveedor)){
                             //convierte el query en los option
                 ?>
-                    <option value="<?php echo $proveedor['codproveedor']?>"><?php echo $proveedor['proveedor']?></option>
+                    <option value="<?php echo $proveedor['codproveedor']?>"><?php echo $proveedor['nombre']?></option>
                 <?php
                         }
                     }
                 ?>
                 </select>
 
-                <label for="producto">Producto</label>
-                <input type="text" name="producto" id="producto" placeholder="Nombre del producto" value="<?php echo $data_producto['descripcion']?>">
+                <label for="descripcion">Producto</label>
+                <input type="text" name="descripcion" id="descripcion" placeholder="Nombre del producto" value="<?php echo $data_producto['descripcion']?>">
                 
                 <label for="precio">Precio</label>
                 <input type="number" name="precio" id="precio" placeholder="Precio del producto" value="<?php echo $data_producto['precio']?>">

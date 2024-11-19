@@ -41,7 +41,7 @@
             </tr>
             <?php 
                 //Paginador
-                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM proveedor WHERE (codproveedor LIKE '%$busqueda%' OR proveedor LIKE '%$busqueda%' OR contacto LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%' OR email LIKE '%$busqueda%')");
+                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM proveedor WHERE (codproveedor LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR contacto LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%' OR email LIKE '%$busqueda%')");
                 
                 $result_register = mysqli_fetch_array($sql_register);
                 $total_registro = $result_register['total_registro'];
@@ -58,7 +58,7 @@
                 $total_paginas = ceil($total_registro / $por_pagina);
 
 
-                $query = mysqli_query($conexion, "SELECT * FROM proveedor WHERE (codproveedor LIKE '%$busqueda%' OR proveedor LIKE '%$busqueda%' OR contacto LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%' OR email LIKE '%$busqueda%') ORDER BY codproveedor ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT * FROM proveedor WHERE (codproveedor LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR contacto LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%' OR email LIKE '%$busqueda%') ORDER BY codproveedor ASC LIMIT $desde, $por_pagina");
 
                 $result = mysqli_num_rows($query);
 
@@ -67,7 +67,7 @@
                     ?>
                         <tr>
                             <td><?php echo $data['codproveedor'] ?></td>
-                            <td><?php echo $data['proveedor'] ?></td>
+                            <td><?php echo $data['nombre'] ?></td>
                             <td><?php echo $data['contacto'] ?></td>
                             <td><?php echo $data['telefono'] ?></td>
                             <td><?php echo $data['direccion'] ?></td>

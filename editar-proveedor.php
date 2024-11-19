@@ -8,18 +8,18 @@
     if(!empty($_POST))
     {
         $alerta='';
-        if(empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion']) || empty($_POST['email'])){
+        if(empty($_POST['nombre']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion']) || empty($_POST['email'])){
             $alerta='<p class="msg-error">Todos los datos son obligarios.</p>';   
         }else{
             
             $idproveedor = $_POST['id'];
-            $proveedor = $_POST['proveedor'];
+            $nombre_proveedor = $_POST['nombre'];
             $contacto  = $_POST['contacto'];
             $telefono   = $_POST['telefono'];
             $direccion  = $_POST['direccion'];
             $email    = $_POST['email'];
 
-            $sql_update = mysqli_query($conexion, "UPDATE proveedor SET proveedor = '$proveedor', contacto = '$contacto', telefono = '$telefono', direccion = '$direccion', email = '$email 'WHERE codproveedor = $idproveedor");
+            $sql_update = mysqli_query($conexion, "UPDATE proveedor SET nombre = '$nombre_proveedor', contacto = '$contacto', telefono = '$telefono', direccion = '$direccion', email = '$email 'WHERE codproveedor = $idproveedor");
 
 
                 if($sql_update > 0){
@@ -44,7 +44,7 @@
     }else{
         while($data = mysqli_fetch_array($sql)){
             $idproveedor = $data['codproveedor'];
-            $proveedor  = $data['proveedor'];
+            $nombre_proveedor  = $data['nombre'];
             $contacto  = $data['contacto'];
             $telefono = $data['telefono'];
             $direccion   = $data['direccion'];
@@ -71,8 +71,8 @@
 
             <form action="" method="post" class="form">
                 <input type="hidden" name="id" value="<?php echo $idproveedor ?>">
-                <label for="proveedor">Nombre del proveedor</label>
-                <input type="text" name="proveedor" id="proveedor" placeholder="Nombre del proveedor" value="<?php echo $proveedor ?>">
+                <label for="nombre">Nombre del proveedor</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre del proveedor" value="<?php echo $nombre_proveedor ?>">
                 <label for="contacto">Contacto</label>
                 <input type="text" name="contacto" id="contacto" placeholder="Nombre completo del contacto" value="<?php echo $contacto ?>">
                 <label for="Telefono">Telefono</label>

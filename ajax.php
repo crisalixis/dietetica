@@ -56,7 +56,7 @@
             }else{
                 $idproducto = $_POST['producto_id'];
 
-                $query_delete = mysqli_query($conexion, "DELETE FROM producto WHERE idproducto = $idusuario");
+                $query_delete = mysqli_query($conexion, "DELETE FROM producto WHERE codproducto = $idproducto");
         
                 if($query_delete){
                     echo 'ok';
