@@ -34,10 +34,9 @@
                             <li><a href="lista-productos.php"><i class="fas fa-cubes"></i> Lista de Productos</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fas fa-file-alt"></i> Factura ▾ </a>
+                    <li><a href=""><i class="fas fa-file-alt"></i> Historial de entradas ▾ </a>
                         <ul>
-                            <li><a href="#"><i class="fas fa-plus"></i> Nueva Facturas</a></li>
-                            <li><a href="#"><i class="fas fa-newspaper"></i> Facturas</a></li>
+                            <li><a href="lista-historial-entradas.php"><i class="fas fa-newspaper"></i> Entradas</a></li>
                         </ul
                     </li>
                 </ul>

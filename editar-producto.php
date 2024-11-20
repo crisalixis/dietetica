@@ -8,11 +8,11 @@
     if(!empty($_POST))
     {
         $alerta='';
-        if(empty($_POST['nombre']) || empty($_POST['producto']) || empty($_POST['precio']) || empty($_POST['id']) || empty($_POST['foto-actual']) || empty($_POST['foto-remove'])){
+        if(empty($_POST['nombre_proveedor']) || empty($_POST['producto']) || empty($_POST['precio']) || empty($_POST['id']) || empty($_POST['foto-actual']) || empty($_POST['foto-remove'])){
             $alerta='<p class="msg-error">Todos los campos son obligatorios.</p>';   
         }else{
             $codproducto = $_POST['id'];
-            $nombre_proveedor  = $_POST['nombre'];
+            $nombre_proveedor  = $_POST['nombre_proveedor'];
             $producto   = $_POST['producto'];
             $precio   = $_POST['precio'];
             $imgProducto  = $_POST['foto-actual'];
@@ -36,7 +36,7 @@
                 }
             }
 
-            $query_update = mysqli_query($conexion, "UPDATE producto SET descripcion = '$producto', nombre = $nombre_proveedor, precio = $precio, foto = '$imgProducto' WHERE codproducto = $codproducto");
+            $query_update = mysqli_query($conexion, "UPDATE producto SET descripcion = '$producto', nombre_proveedor = $nombre_proveedor, precio = $precio, foto = '$imgProducto' WHERE codproducto = $codproducto");
 
                 if($query_update){
 
@@ -65,7 +65,7 @@
                 header("location: lista-productos.php"); //si no es numero se redirecciona
             }
 
-            $query_producto = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.foto,  pr.codproveedor, pr.nombre FROM producto p INNER JOIN proveedor pr ON p.nombre = pr.codproveedor WHERE p.codproducto = $id_producto");
+            $query_producto = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.foto,  pr.codproveedor, pr.nombre FROM producto p INNER JOIN proveedor pr ON p.nombre_proveedor = pr.codproveedor WHERE p.codproducto = $id_producto");
             $result_producto = mysqli_num_rows($query_producto);
 
             $foto = '';
@@ -106,12 +106,12 @@
                 <input type="hidden" id="foto-actual" name="foto-actual" value="<?php echo $data_producto['foto']?>">
                 <input type="hidden" id="foto-remove" name="foto-remove" value="<?php echo $data_producto['foto']?>">
                 
-                <label for="nombre">Nombre del proveedor</label>
+                <label for="nombre_proveedor">Nombre del proveedor</label>
                 <?php
                     $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, nombre FROM proveedor ORDER BY nombre ASC");
                     $resul_proveedor = mysqli_num_rows($query_proveedor);
                 ?>
-                <select name="nombre" id="nombre" class="notItemOne">
+                <select name="nombre_proveedor" id="nombre_proveedor" class="notItemOne">
                     <option value="<?php echo $data_producto['codproveedor']?>" selected><?php echo $data_producto['nombre']?></option>
                 <?php
                 

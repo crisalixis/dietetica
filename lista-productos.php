@@ -68,7 +68,7 @@
                 $total_paginas = ceil($total_registro / $por_pagina);
 
 
-                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.nombre, p.foto FROM producto p INNER JOIN proveedor pr ON p.nombre = pr.codproveedor ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.nombre, p.foto FROM producto p INNER JOIN proveedor pr ON p.nombre_proveedor = pr.codproveedor ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
                 $result = mysqli_num_rows($query);
 
                 if($result > 0){
