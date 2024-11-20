@@ -28,8 +28,8 @@
             }
             if(!empty($_REQUEST['proveedor'])){
                 $search_proveedor = $_REQUEST['proveedor'];
-                $where = "p.nombre LIKE $search_proveedor";
-                $buscar = 'nombre='.$search_proveedor;
+                $where = "p.nombre_proveedor LIKE $search_proveedor";
+                $buscar = 'nombre_proveedor='.$search_proveedor;
                 
             }
         ?>
@@ -97,7 +97,7 @@
                 $total_paginas = ceil($total_registro / $por_pagina);
 
 
-                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.nombre, p.foto FROM producto p INNER JOIN proveedor pr ON p.nombre = pr.codproveedor WHERE $where ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.nombre, p.foto FROM producto p INNER JOIN proveedor pr ON p.nombre_proveedor = pr.codproveedor WHERE $where ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
                 $result = mysqli_num_rows($query);
 
                 if($result > 0){
@@ -113,7 +113,7 @@
                             <td><?php echo $data['descripcion'] ?></td>
                             <td class="precioC"><?php echo $data['precio'] ?></td>
                             <td class="existenciaC"><?php echo $data['existencia'] ?></td>
-                            <td><?php echo $data['ombre'] ?></td>
+                            <td><?php echo $data['nombre'] ?></td>
                             <td><img src="<?php echo $foto ?>" alt="<?php echo $data['descripcion'] ?>" style=" height: 80px; width: 80px; margin: auto"></td>
                             <?php if($_SESSION['rol'] == 1){?>
                             <td>
