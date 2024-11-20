@@ -113,7 +113,7 @@
                             <td><?php echo $data['descripcion'] ?></td>
                             <td class="precioC"><?php echo $data['precio'] ?></td>
                             <td class="existenciaC"><?php echo $data['existencia'] ?></td>
-                            <td><?php echo $data['nombre'] ?></td>
+                            <td><?php echo $data['ombre'] ?></td>
                             <td><img src="<?php echo $foto ?>" alt="<?php echo $data['descripcion'] ?>" style=" height: 80px; width: 80px; margin: auto"></td>
                             <?php if($_SESSION['rol'] == 1){?>
                             <td>

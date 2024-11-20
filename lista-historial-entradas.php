@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
     <?php include "includes/scripts.php" ?>
-    <title>Lista de Proveedores</title>
+    <title>Lista de Poveedores</title>
 </head>
 <body>
     <?php include "includes/header.php" ?>

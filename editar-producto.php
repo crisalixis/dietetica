@@ -99,7 +99,7 @@
 		<div class="form-register">
             <h1><i class="fa-solid fa-cubes-stacked"></i> Actualizar Producto</h1>
             <hr>
-            <div class="alerta"><?ph echo isset($alerta) ? $alerta :'' ?></div>
+            <div class="alerta"><?php echo isset($alerta) ? $alerta :'' ?></div>
 
             <form action="" method="post" class="form" enctype="multipart/form-data"><!--multipart/form-data sirve para que se puedan adjuntar imagenes o otro tipo de archivo-->
                 <input type="hidden" name="id" value="<?php echo $data_producto['codproducto']?>">
