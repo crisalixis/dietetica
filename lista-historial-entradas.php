@@ -3,7 +3,7 @@
     include "config/db.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"></html>
 <head>
 	<meta charset="UTF-8">
     <?php include "includes/scripts.php" ?>
