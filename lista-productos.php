@@ -15,9 +15,14 @@
 <body>
     <?php include "includes/header.php" ?>
 	<section id="container">
-		
         <h1><i class="fas fa-cubes"></i> Lista de Productos</h1>
+        <?php 
+            if($_SESSION['rol'] == 1){
+        ?>
         <a href="registro-producto.php" class="btn-new"><i class="fas fa-plus"></i> Crear producto</a>
+        <?php
+            }
+        ?>
         <form action="buscar-producto.php" method="get" class="form-search">
             <input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
             <button type="submit"class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>

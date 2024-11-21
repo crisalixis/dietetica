@@ -27,7 +27,7 @@
                     <li><a><i class="fa-solid fa-cubes-stacked"></i> Productos ▾ </a>
                         <ul>
                         <?php 
-                        if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){
+                        if($_SESSION['rol'] == 1){
                         ?>
                             <li><a href="registro-producto.php"><i class="fas fa-plus"></i> Nuevo Producto</a></li>
                         <?php } ?>

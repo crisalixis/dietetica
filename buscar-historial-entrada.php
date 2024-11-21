@@ -12,7 +12,13 @@
 <body>
     <?php include "includes/header.php" ?>
 	<section id="container">
-		
+        <?php
+
+        $busqueda = strtolower($_REQUEST['busqueda']);
+        if(empty($busqueda)){
+            header("Location: lista-proveedor.php");
+        }
+        ?>
         <h1><i class="fas fa-cubes"></i> Historial de entradas</h1>
         <form action="buscar-historial-entrada.php" method="get" class="form-search">
             <input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
