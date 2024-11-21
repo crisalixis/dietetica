@@ -14,45 +14,25 @@
 	<section id="container">
 		
         <h1><i class="fas fa-cubes"></i> Historial de entradas</h1>
-        <form action="buscar-producto.php" method="get" class="form-search">
+        <form action="buscar-historial-entrada.php" method="get" class="form-search">
             <input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
             <button type="submit"class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <table>
             <tr>
                 <th>Correlativo</th>
-                <th>Descripcion</th>
+                <th>Producto</th>
+                <th>Fecha</th>
+                <th>Cantidad</th>
                 <th>Precio</th>
-                <th>Existencia</th>
-                <th>
-                <?php
-                    $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, nombre FROM proveedor ORDER BY codproveedor ASC");
-                    $resul_proveedor = mysqli_num_rows($query_proveedor);
-                ?>
-                <select name="proveedor" id="search-proveedor">
-                    <option value="" selected>Proveedor</option>
-                <?php
-                    if($resul_proveedor > 0){
-                        while ($proveedor = mysqli_fetch_array($query_proveedor)){
-                            //convierte el query en los option
-                ?>
-                <option value="<?php echo $proveedor['codproveedor']?>"><?php echo $proveedor['nombre']?></option>
-                <?php
-                        }
-                    }
-                ?>
-                </select>
-                </th>
-                <th>Foto</th>
-                <th>Acciones</th>
             </tr>
             <?php 
                 //Paginador
-                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM producto");
+                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM entradas");
                 $result_register = mysqli_fetch_array($sql_register);
                 $total_registro = $result_register['total_registro'];
 
-                $por_pagina = 5;
+                $por_pagina = 9;
                 
                 if(empty($_GET['pagina'])){
                     $pagina = 1;
@@ -64,31 +44,20 @@
                 $total_paginas = ceil($total_registro / $por_pagina);
 
 
-                $query = mysqli_query($conexion, "SELECT p.codproducto, p.descripcion, p.precio, p.existencia, pr.nombre, p.foto FROM producto p INNER JOIN proveedor pr ON p.nombre = pr.codproveedor ORDER BY p.codproducto ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT e.correlativo, p.codproducto, e.fecha, e.cantidad, e.precio FROM entradas e INNER JOIN producto p ON e.codproducto = p.codproducto ORDER BY e.correlativo ASC LIMIT $desde, $por_pagina");
                 $result = mysqli_num_rows($query);
 
                 if($result > 0){
                     while ($data = mysqli_fetch_array($query)){
-                        if($data['foto'] != 'img-producto.png'){
-                            $foto = 'img/uploads/'.$data['foto'];
-                        }else{
-                            $foto = 'img/'.$data['foto'];
-                        }
+                        $formato = 'Y-m-d H:i:s';
+                        $fecha = DateTime::createFromFormat($formato, $data["fecha"]);
                     ?>
-                        <tr class="row<?php echo $data['codproducto'] ?>" >
+                        <tr>
+                            <td><?php echo $data['correlativo'] ?></td>
                             <td><?php echo $data['codproducto'] ?></td>
-                            <td><?php echo $data['descripcion'] ?></td>
-                            <td class="precioC"><?php echo $data['precio'] ?></td>
-                            <td class="existenciaC"><?php echo $data['existencia'] ?></td>
-                            <td><?php echo $data['nombre'] ?></td>
-                            <td><img src="<?php echo $foto ?>" alt="<?php echo $data['descripcion'] ?>" style=" height: 80px; width: 80px; margin: auto"></td>
-                            <?php if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){?>
-                            <td>
-                                <a href="" class="add-product" product="<?php echo $data['codproducto'] ?>" style="color: #002f6e; padding: 5px;"><i class="fas fa-plus"></i></a>
-                                <a href="editar-producto.php?id=<?php echo $data['codproducto'] ?>" style="color: #126e00; padding: 5px;"><i class="fas fa-pencil"></i></a>
-                                <a href="" class="del-product" product="<?php echo $data['codproducto'] ?>" style="color: #b11919; padding: 5px;"><i class="fas fa-trash"></i></a>
-                            </td>
-                            <?php }?>
+                            <td><?php echo $fecha->format('d-m-Y')?></td>
+                            <td><?php echo $data['cantidad'] ?></td>
+                            <td><?php echo $data['precio'] ?></td>
                         </tr>
                 <?php
                     }
