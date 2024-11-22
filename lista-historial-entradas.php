@@ -44,7 +44,9 @@
                 $total_paginas = ceil($total_registro / $por_pagina);
 
 
-                $query = mysqli_query($conexion, "SELECT e.correlativo, p.codproducto, e.fecha, e.cantidad, e.precio FROM entradas e INNER JOIN producto p ON e.codproducto = p.codproducto ORDER BY e.correlativo ASC LIMIT $desde, $por_pagina");
+                //$query = mysqli_query($conexion, "SELECT e.correlativo, p.codproducto, e.fecha, e.cantidad, e.precio FROM entradas e INNER JOIN producto p ON e.codproducto = p.codproducto ORDER BY e.correlativo ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT correlativo, codproducto, fecha, cantidad, precio FROM entradas ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
+                
                 $result = mysqli_num_rows($query);
 
                 if($result > 0){

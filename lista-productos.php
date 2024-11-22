@@ -53,7 +53,11 @@
                 </select>
                 </th>
                 <th>Foto</th>
+                <?php 
+                    if($_SESSION['rol'] == 1){
+                ?>
                 <th>Acciones</th>
+                <?php } ?>
             </tr>
             <?php 
                 //Paginador
@@ -93,9 +97,13 @@
                             <td><img src="<?php echo $foto ?>" alt="<?php echo $data['descripcion'] ?>" style=" height: 80px; width: 80px; margin: auto"></td>
                             <?php if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){?>
                             <td>
+                            <?php 
+                                if($_SESSION['rol'] == 1){
+                            ?>
                                 <a href="" class="add-product" product="<?php echo $data['codproducto'] ?>" style="color: #002f6e; padding: 5px;"><i class="fas fa-plus"></i></a>
                                 <a href="editar-producto.php?id=<?php echo $data['codproducto'] ?>" style="color: #126e00; padding: 5px;"><i class="fas fa-pencil"></i></a>
                                 <a href="" class="del-product" product="<?php echo $data['codproducto'] ?>" style="color: #b11919; padding: 5px;"><i class="fas fa-trash"></i></a>
+                            <?php }?>
                             </td>
                             <?php }?>
                         </tr>
