@@ -35,7 +35,7 @@
             </tr>
             <?php 
                 //Paginador
-                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM entradas WHERE(correlativo LIKE '%$busqueda%' OR fecha LIKE '%$busqueda%')");
+                $sql_register = mysqli_query($conexion, "SELECT COUNT(*) as total_registro FROM entradas WHERE(correlativo LIKE '%$busqueda%')");
                 
                 $result_register = mysqli_fetch_array($sql_register);
                 $total_registro = $result_register['total_registro'];
@@ -54,7 +54,7 @@
 
                 //$query = mysqli_query($conexion, "SELECT e.correlativo, p.codproducto, e.fecha, e.cantidad, e.precio FROM entradas e INNER JOIN producto p ON e.codproducto = p.codproducto ORDER BY e.correlativo ASC LIMIT $desde, $por_pagina");
                 //$query = mysqli_query($conexion, "SELECT correlativo, codproducto, fecha, cantidad, precio FROM entradas ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
-                $query = mysqli_query($conexion, "SELECT * FROM entradas WHERE(correlativo LIKE '%$busqueda%' OR fecha LIKE '%$busqueda%') ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT * FROM entradas WHERE(correlativo LIKE '%$busqueda%') ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
                 
                 $result = mysqli_num_rows($query);
 
