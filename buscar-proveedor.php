@@ -36,7 +36,6 @@
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>Email</th>
-                <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
             <?php 

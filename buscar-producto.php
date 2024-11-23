@@ -42,7 +42,7 @@
         <table>
             <tr>
                 <th>Codigo</th>
-                <th>Descripcion</th>
+                <th>Nombre del producto</th>
                 <th>Precio</th>
                 <th>Existencia</th>
                 <th>
