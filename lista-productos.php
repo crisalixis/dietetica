@@ -18,7 +18,7 @@
         <h1><i class="fas fa-cubes"></i> Lista de Productos</h1>
         <?php 
             if($_SESSION['rol'] == 1){
-        ?>
+        ?
         <a href="registro-producto.php" class="btn-new"><i class="fas fa-plus"></i> Crear producto</a>
         <?php
             }
