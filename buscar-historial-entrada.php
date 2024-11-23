@@ -13,7 +13,7 @@
 <body>
     
 	<div id="container">
-        <?ph
+        <?php
 
         $busqueda = strtolower($_REQUEST['busqueda']);
         if(empty($busqueda)){
