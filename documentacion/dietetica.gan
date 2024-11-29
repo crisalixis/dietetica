@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="dietetica" company="" webLink="http://" view-date="2024-07-01" view-index="2" gantt-divider-location="423" resource-divider-location="300" version="3.3.3311" locale="es_ES">
+    <description/>
+    <view zooming-state="default:8" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="220" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="104" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="83" order="2"/>
+        <field id="tpd15" name="Notas" width="20" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <option id="color.recent"><![CDATA[#006666 #3399ff #6666ff #6600ff #0000cc]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nombre" width="210" order="0"/>
+        <field id="1" name="Función" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" uid="219eaee0792f40f58ce77fd5a265a75e" name="Analisis" color="#6600ff" meeting="false" start="2024-05-01" duration="24" complete="0" expand="true">
+            <depend id="21" type="2" difference="0" hardness="Strong"/>
+            <task id="24" uid="42d81a8ffee7455b8d8e80275509e047" name="Releer documentacion del sistema retomado" color="#8cb6ce" meeting="false" start="2024-05-01" duration="12" complete="0" expand="true">
+                <depend id="23" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="23" uid="f76ccac2782d430780f856ec58559aac" name="Preguntas de que necesitaria el sistema" color="#8cb6ce" meeting="false" start="2024-05-17" duration="12" complete="0" expand="true">
+                <depend id="20" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="21" uid="4fb593987fbf4042ae26672ca59498dd" name="Diseño" color="#6666ff" meeting="false" start="2024-06-04" duration="114" complete="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <task id="20" uid="e84345bf14b64241892fe73e43349fa4" name="Diseño de la base de datos" color="#8cb6ce" meeting="false" start="2024-06-04" duration="28" complete="0" expand="true">
+                <depend id="25" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="25" uid="7636c92fb7ea4198b81cd44e6e1e85a3" name="Receso invernal" meeting="false" start="2024-07-12" duration="10" complete="0" expand="true">
+                <depend id="19" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="19" uid="648704f163bf4c908ffbbb7564929a6a" name="Login" color="#8cb6ce" meeting="false" start="2024-07-26" duration="10" complete="0" expand="true">
+                <depend id="18" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="18" uid="6349f175aea2439486cd4b7db07f6811" name="Página de inicio" color="#8cb6ce" meeting="false" start="2024-08-09" duration="20" complete="0" expand="true">
+                <depend id="17" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="17" uid="8861083db42747488b357c6359eae0c1" name="Módulo de Usuarios" color="#8cb6ce" meeting="false" start="2024-09-06" duration="8" complete="0" expand="true">
+                <depend id="16" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="16" uid="44a530be461346789a4ad8b0656069d7" name="Módulo de Proveedores" color="#8cb6ce" meeting="false" start="2024-09-18" duration="9" complete="0" expand="true">
+                <depend id="15" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="15" uid="9e3b3df479d2437e8a27384d9082baad" name="Módulo de Producto" color="#8cb6ce" meeting="false" start="2024-10-01" duration="15" complete="0" expand="true">
+                <depend id="14" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="14" uid="96f6c6f732904c04972b189c0933bf1c" name="Módulo de Historial de Entradas" color="#8cb6ce" meeting="false" start="2024-10-22" duration="14" complete="0" expand="true">
+                <depend id="12" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="13" uid="5c8176de58b14b65a33f9f2407b55c18" name="Implementacion y prueba" color="#006666" meeting="false" start="2024-11-11" duration="14" complete="0" expand="true">
+            <task id="12" uid="a531cee2d0624c18a909bc4c9f612819" name="Prueba primer prototipo" color="#8cb6ce" meeting="false" start="2024-11-11" duration="7" complete="0" expand="true">
+                <depend id="11" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="11" uid="0c8667ad84a84bd6811132ae9373f859" name="Prueba segundo prototipo" color="#8cb6ce" meeting="false" start="2024-11-20" duration="3" complete="0" expand="true">
+                <depend id="10" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="10" uid="896bcf017b45497e8644e4c2a585e90c" name="Prueba del Sistema" color="#8cb6ce" meeting="false" start="2024-11-25" duration="4" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
