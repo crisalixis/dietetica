@@ -54,19 +54,17 @@
 
                 //$query = mysqli_query($conexion, "SELECT e.correlativo, p.codproducto, e.fecha, e.cantidad, e.precio FROM entradas e INNER JOIN producto p ON e.codproducto = p.codproducto ORDER BY e.correlativo ASC LIMIT $desde, $por_pagina");
                 //$query = mysqli_query($conexion, "SELECT correlativo, codproducto, fecha, cantidad, precio FROM entradas ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
-                $query = mysqli_query($conexion, "SELECT * FROM entradas WHERE(correlativo LIKE '%$busqueda%') ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
+                $query = mysqli_query($conexion, "SELECT * FROM entradas WHERE(correlativo LIKE '%$busqueda%' OR fecha LIKE '%$busqueda%') ORDER BY correlativo ASC LIMIT $desde, $por_pagina");
                 
                 $result = mysqli_num_rows($query);
 
                 if($result > 0){
                     while ($data = mysqli_fetch_array($query)){
-                        $formato = 'Y-m-d H:i:s';
-                        $fecha = DateTime::createFromFormat($formato, $data["fecha"]);
                     ?>
                         <tr>
                             <td><?php echo $data['correlativo'] ?></td>
                             <td><?php echo $data['codproducto'] ?></td>
-                            <td><?php echo $fecha->format('d-m-Y')?></td>
+                            <td><?php echo $data['fecha'] ?></td>
                             <td><?php echo $data['cantidad'] ?></td>
                             <td><?php echo $data['precio'] ?></td>
                         </tr>

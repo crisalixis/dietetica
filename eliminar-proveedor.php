@@ -34,7 +34,7 @@
                 $nombre_proveedor  = $data['nombre'];
             }
         }else{
-                header("location: lista-usuario.php");
+                header("location: lista-proveedor.php");
         }
     }
 ?>

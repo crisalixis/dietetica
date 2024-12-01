@@ -51,13 +51,11 @@
 
                 if($result > 0){
                     while ($data = mysqli_fetch_array($query)){
-                        $formato = 'Y-m-d H:i:s';
-                        $fecha = DateTime::createFromFormat($formato, $data["fecha"]);
                     ?>
                         <tr>
                             <td><?php echo $data['correlativo'] ?></td>
                             <td><?php echo $data['codproducto'] ?></td>
-                            <td><?php echo $fecha->format('d-m-Y')?></td>
+                            <td><?php echo $data['fecha']?></td>
                             <td><?php echo $data['cantidad'] ?></td>
                             <td><?php echo $data['precio'] ?></td>
                         </tr>

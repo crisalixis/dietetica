@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if($_SESSION['rol'] != 1 and $_SESSION['rol'] != 2){
+    if($_SESSION['rol'] != 1){
         header("location: sistema.php");
     }
     include "config/db.php";
@@ -32,7 +32,7 @@
                 $src = $destino.$imgProducto;
             }
 
-            $query = mysqli_query($conexion, "INSERT INTO producto(nombre, descripcion, precio, existencia, usuario_id, foto) VALUES ('$nombre_proveedor','$producto','$precio','$cantidad','$usuario_id', '$imgProducto')");
+            $query = mysqli_query($conexion, "INSERT INTO producto(nombre_proveedor, descripcion, precio, existencia, usuario_id, foto) VALUES ('$nombre_proveedor','$producto','$precio','$cantidad','$usuario_id', '$imgProducto')");
 
                 if($query){
                     if($nombre_foto != ''){
